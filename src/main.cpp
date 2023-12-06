@@ -33,7 +33,7 @@ void loop()
     /* Вычисление расстояния с ИК-дальномера */
     int Vo_adc = analogRead(IR_DIST);             // Считывание вых. напряжения с датчика с помощью АЦП
     float Vo = (float)Vo_adc / 1023.0f * 5000.0f; // Перевод АЦП в напряжени, мВ
-    L_IR = ir_k / (Vo - ir_b) * 100.0f;           // расстояние с ИК-дальномера, мм
+    L_IR = ir_k / (Vo - ir_b) * 10.0f;           // расстояние с ИК-дальномера, мм
 
     /* Вычисление расстояния с УЗ-дальномера */
     ///////////////////////////////////////////////////////////
@@ -46,11 +46,11 @@ void loop()
     LCD_Clear();
     LCD_GotoXY(0, 0);
     char msg_ir[16] = {'\0'};
-    sprintf(msg_ir, "IR[mm]: %.1f", L_IR);
+    sprintf(msg_ir, "IR:%.1f", L_IR);
     LCD_SendString(msg_ir, strlen(msg_ir));
     LCD_GotoXY(0, 1);
     char msg_us[16] = {'\0'};
-    sprintf(msg_us, "US[mm]: %.1f", L_US);
+    sprintf(msg_us, "US:%.1f", L_US);
     LCD_SendString(msg_us, strlen(msg_us));
     delay(200);
 }
